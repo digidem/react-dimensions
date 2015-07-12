@@ -7,8 +7,8 @@
     "parser": "babel-eslint"
   },
   "scripts": {
-    "build": "babel index.jsx -o index.js",
-    "doc": "dox -r < index.js | doxme --readme > README.md",
+    "build": "npm test && babel index.jsx -o index.js",
+    "doc": "dox -r < index.jsx | doxme --readme > README.md",
     "prepublish": "npm run build && npm run doc",
     "test": "standard"
   },
