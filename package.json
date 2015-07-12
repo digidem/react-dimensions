@@ -1,6 +1,6 @@
 {
   "name": "react-dimensions",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "React [higher-order component](https://gist.github.com/sebmarkbage/ef0bf1f338a7182b6775) to get dimensions of container",
   "main": "index.js",
   "standard": {
