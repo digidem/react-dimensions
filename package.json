@@ -1,0 +1,44 @@
+{
+  "name": "react-dimensions",
+  "version": "0.0.0",
+  "description": "React [higher-order component](https://gist.github.com/sebmarkbage/ef0bf1f338a7182b6775) to get dimensions of container",
+  "main": "index.js",
+  "standard": {
+    "parser": "babel-eslint"
+  },
+  "scripts": {
+    "build": "babel index.jsx -o index.js",
+    "doc": "dox -r < index.js | doxme --readme > README.md",
+    "prepublish": "npm run build && npm run doc",
+    "test": "standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/digidem/react-dimensions.git"
+  },
+  "keywords": [
+    "react",
+    "dimensions",
+    "width",
+    "resize"
+  ],
+  "author": "Gregor MacLennan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/digidem/react-dimensions/issues"
+  },
+  "homepage": "https://github.com/digidem/react-dimensions#readme",
+  "devDependencies": {
+    "babel": "^5.6.14",
+    "babel-eslint": "^3.1.23",
+    "dox": "^0.8.0",
+    "doxme": "^1.8.2",
+    "eslint-config-standard": "^3.4.1",
+    "eslint-config-standard-react": "^1.0.1",
+    "eslint-plugin-react": "^2.7.0",
+    "standard": "^4.5.3"
+  },
+  "peerDependencies": {
+    "react": "0.13.x"
+  }
+}

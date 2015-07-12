@@ -1,0 +1,8 @@
+{
+  "loose": ["es6.modules", "es6.classes"],
+  "optional": [
+    "es7.decorators",
+    "es7.exportExtensions",
+    "es7.classProperties"
+  ]
+}
