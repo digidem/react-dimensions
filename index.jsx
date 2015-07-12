@@ -78,6 +78,10 @@ export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = d
         window.addEventListener('resize', this.onResize, false)
       }
 
+      componentWillUnmount () {
+        window.removeEventListener('resize', this.onResize)
+      }
+
       render () {
         return (
           <div style={style} ref='container'>
