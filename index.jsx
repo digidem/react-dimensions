@@ -15,6 +15,7 @@ function defaultGetHeight (element) {
   return element.clientHeight
 }
 
+/* eslint-disable no-irregular-whitespace */
 /**
  * Wraps a react component and adds properties `containerHeight` and
  * `containerWidth`. Useful for responsive design. Properties update on
@@ -32,7 +33,6 @@ function defaultGetHeight (element) {
  * @return {function}                   Returns a decorator that can be used to
  * enhance a react component `Enhance(MyComponent)`
  * @example
- * ```js
  * import Dimensions from 'react-dimensions'
  *
  * class MyComponent {
@@ -45,14 +45,12 @@ function defaultGetHeight (element) {
  * }
  *
  * export default Dimensions()(MyComponent) // Enhanced component
- * ```
  *
- * Or with [ES7 Decorators](https://github.com/wycats/javascript-decorators)
- *
- * ```js
+ * @example
+ * // with [ES7 Decorators](https://github.com/wycats/javascript-decorators)
  * import Dimensions from 'react-dimensions'
  *
- * @Dimensions()
+ * ​@Dimensions()
  * class MyComponent {
  *   render() (
  *     <div>
@@ -63,8 +61,8 @@ function defaultGetHeight (element) {
  * }
  *
  * export default MyComponent
- * ```
  */
+/* eslint-enable no-irregular-whitespace */
 export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = defaultGetWidth } = {}) {
   return (ComposedComponent) => {
     return class extends React.Component {
