@@ -3,12 +3,7 @@
 React [higher-order component](https://gist.github.com/sebmarkbage/ef0bf1f338a7182b6775) to get dimensions of container
 
 
-### `undefined`
-
-eslint-disable no-irregular-whitespace
-
-
-### `undefined([options.getHeight], [options.getWidth])`
+### `Dimensions([options.getHeight], [options.getWidth])`
 
 Wraps a react component and adds properties `containerHeight` and
 `containerWidth`. Useful for responsive design. Properties update on
@@ -45,30 +40,7 @@ export default Dimensions()(MyComponent) // Enhanced component
 ```
 
 
-```js
-// with [ES7 Decorators](https://github.com/wycats/javascript-decorators)
-import Dimensions from 'react-dimensions'
-
-​@Dimensions()
-class MyComponent {
-  render() (
-    <div>
-      {`containerWidth=${this.props.containerWidth},`}
-      {`containerHeight=${$this.props.containerHeight}`}
-    </div>
-  )
-}
-
-export default MyComponent
-```
-
-
 **Returns** `function`, Returns a decorator that can be used to enhance a react component `Enhance(MyComponent)`
-
-
-### `Dimensions`
-
-eslint-enable no-irregular-whitespace
 
 ## Installation
 
