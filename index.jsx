@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 
 const style = {
   width: '100%',
@@ -55,7 +56,7 @@ export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = d
       // Using arrow functions and ES7 Class properties to autobind
       // http://babeljs.io/blog/2015/06/07/react-on-es6-plus/#arrow-functions
       updateDimensions = () => {
-        const container = React.findDOMNode(this.refs.container)
+        const container = ReactDOM.findDOMNode(this.refs.container)
         if (!container) {
           throw new Error('Cannot find container div')
         }
