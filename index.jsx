@@ -18,32 +18,55 @@ function defaultGetHeight (element) {
 /**
  * Wraps a react component and adds properties `containerHeight` and
  * `containerWidth`. Useful for responsive design. Properties update on
- * window resize. **Note** that the parent element must have a height, or else
- * nothing will be rendered.
+ * window resize. **Note** that the parent element must have either a
+ * height or a width, or nothing will be rendered
  *
- * Can be used as an [ES7 class decorator](https://github.com/wycats/javascript-decorators) or a
+ * Can be used as a
  * [higher-order component](http://babeljs.io/blog/2015/06/07/react-on-es6-plus/#property-initializers)
+ * or as an [ES7 class decorator](https://github.com/wycats/javascript-decorators)
  * (see examples)
  *
  * @param  {function} [options.getHeight] `getHeight(element)` should return element
  * height, where element is the wrapper div. Defaults to `element.clientHeight`
  * @param  {function} [options.getWidth]  `getWidth(element)` should return element
  * width, where element is the wrapper div. Defaults to `element.clientWidth`
- * @return {function}                   Returns a decorator that can be used to
- * enhance a react component `Enhance(MyComponent)`
+ * @return {function}                   Returns a higher-order component that can be
+ * used to enhance a react component `Dimensions()(MyComponent)`
+ *
  * @example
+ * // ES2015
+ * import React from 'react'
  * import Dimensions from 'react-dimensions'
  *
- * class MyComponent {
+ * class MyComponent extends React.Component {
  *   render() (
- *     <div>
- *       {`containerWidth=${this.props.containerWidth},`}
- *       {`containerHeight=${$this.props.containerHeight}`}
+ *     <div
+ *       containerWidth={this.props.containerWidth}
+ *       containerHeight={this.props.containerHeight}
+ *     >
  *     </div>
  *   )
  * }
  *
  * export default Dimensions()(MyComponent) // Enhanced component
+ *
+ * @example
+ * // ES5
+ * var React = require('react')
+ * var Dimensions = require('react-dimensions')
+ *
+ * var MyComponent = React.createClass({
+ *   render: function() {(
+ *     <div
+ *       containerWidth={this.props.containerWidth}
+ *       containerHeight={this.props.containerHeight}
+ *     >
+ *     </div>
+ *   )}
+ * }
+ *
+ * module.exports = Dimensions()(MyComponent) // Enhanced component
+ *
  */
 export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = defaultGetWidth } = {}) {
   return (ComposedComponent) => {
@@ -85,8 +108,8 @@ export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = d
       render () {
         return (
           <div style={style} ref='container'>
-            {this.state.containerWidth || this.state.containerHeight
-             && <ComposedComponent {...this.state} {...this.props}/>}
+            {this.state.containerWidth || this.state.containerHeight &&
+             <ComposedComponent {...this.state} {...this.props}/>}
           </div>
         )
       }
