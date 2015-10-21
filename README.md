@@ -69,7 +69,7 @@ module.exports = Dimensions()(MyComponent) // Enhanced component
 
 Will open a browser window for localhost:9966
 
-`npm install && npm start`
+`npm i && npm i react react-dom && npm start`
 
 ## Installation
 
