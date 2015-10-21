@@ -108,7 +108,7 @@ export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = d
       render () {
         return (
           <div style={style} ref='container'>
-            {this.state.containerWidth || this.state.containerHeight &&
+            {(this.state.containerWidth || this.state.containerHeight) &&
              <ComposedComponent {...this.state} {...this.props}/>}
           </div>
         )
