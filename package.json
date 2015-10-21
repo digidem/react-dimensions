@@ -7,6 +7,7 @@
     "parser": "babel-eslint"
   },
   "scripts": {
+    "start": "./node_modules/.bin/budo example.jsx --live --open -- -t babelify",
     "build": "npm test && babel index.jsx -o index.js",
     "doc": "dox -r < index.jsx | doxme --readme > README.md",
     "prepublish": "npm run build && npm run doc",
@@ -34,6 +35,8 @@
   "devDependencies": {
     "babel": "^5.8.23",
     "babel-eslint": "^4.1.3",
+    "babelify": "^6.4.0",
+    "budo": "^5.1.3",
     "dox": "^0.8.0",
     "doxme": "^1.8.2",
     "eslint-config-standard": "^4.4.0",

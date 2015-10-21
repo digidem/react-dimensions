@@ -65,6 +65,12 @@ module.exports = Dimensions()(MyComponent) // Enhanced component
 
 **Returns** `function`, Returns a higher-order component that can be used to enhance a react component `Dimensions()(MyComponent)`
 
+### Live Example
+
+Will open a browser window for localhost:9966
+
+`npm install && npm start`
+
 ## Installation
 
 Requires [nodejs](http://nodejs.org/).
