@@ -33,6 +33,12 @@ function defaultGetHeight (element) {
  * @return {function}                   Returns a higher-order component that can be
  * used to enhance a react component `Dimensions()(MyComponent)`
  *
+ * ### Live Example
+ *
+ * Will open a browser window for localhost:9966
+ *
+ * `npm i && npm i react react-dom && npm start`
+ *
  * @example
  * // ES2015
  * import React from 'react'
