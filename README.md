@@ -15,6 +15,8 @@ Can be used as a
 or as an [ES7 class decorator](https://github.com/wycats/javascript-decorators)
 (see examples)
 
+v1.0.0 is for React v0.14 only. Use v0.0.5 for React v0.13
+
 ### Parameters
 
 | parameter             | type     | description                                                                                                                         |
