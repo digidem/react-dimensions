@@ -3,7 +3,7 @@
 React [higher-order component](https://gist.github.com/sebmarkbage/ef0bf1f338a7182b6775) to get dimensions of container
 
 
-### `Dimensions([options.getHeight], [options.getWidth])`
+### `Dimensions([options])`
 
 Wraps a react component and adds properties `containerHeight` and
 `containerWidth`. Useful for responsive design. Properties update on
@@ -21,6 +21,7 @@ v1.0.0 is for React v0.14 only. Use ^0.1.0 for React v0.13
 
 | parameter             | type     | description                                                                                                                         |
 | --------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `[options]`           | object   | _optional:_ Options                                                                                                                 |
 | `[options.getHeight]` | function | _optional:_ `getHeight(element)` should return element height, where element is the wrapper div. Defaults to `element.clientHeight` |
 | `[options.getWidth]`  | function | _optional:_ `getWidth(element)` should return element width, where element is the wrapper div. Defaults to `element.clientWidth`    |
 
