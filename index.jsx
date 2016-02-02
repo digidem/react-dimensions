@@ -3,7 +3,6 @@ import React from 'react'
 const style = {
   width: '100%',
   height: '100%',
-  flex: 1,
   padding: 0,
   border: 0
 }
@@ -30,10 +29,13 @@ function defaultGetHeight (element) {
  * v1.0.0 is for React v0.14 only. Use ^0.1.0 for React v0.13
  *
  * @param {object} [options] Options
+
  * @param {function} [options.getHeight] `getHeight(element)` should return element
  * height, where element is the wrapper div. Defaults to `element.clientHeight`
  * @param {function} [options.getWidth]  `getWidth(element)` should return element
  * width, where element is the wrapper div. Defaults to `element.clientWidth`
+ * @param {object} [options.styleOverride] override default styles for the
+ * wrapper div created by react-dimensions.
  * @return {function}                   Returns a higher-order component that can be
  * used to enhance a react component `Dimensions()(MyComponent)`
  *
@@ -78,7 +80,7 @@ function defaultGetHeight (element) {
  * module.exports = Dimensions()(MyComponent) // Enhanced component
  *
  */
-export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = defaultGetWidth } = {}) {
+export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = defaultGetWidth, styleOverride = {} } = {}) {
   return (ComposedComponent) => {
     return class DimensionsHOC extends React.Component {
       // ES7 Class properties
@@ -116,8 +118,9 @@ export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = d
       }
 
       render () {
+        const finalStyle = Object.assign({}, style, styleOverride)
         return (
-          <div style={style} ref='container'>
+          <div style={finalStyle} ref='container'>
             {(this.state.containerWidth || this.state.containerHeight) &&
              <ComposedComponent {...this.state} {...this.props}/>}
           </div>
