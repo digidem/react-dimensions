@@ -29,7 +29,6 @@ function defaultGetHeight (element) {
  * v1.0.0 is for React v0.14 only. Use ^0.1.0 for React v0.13
  *
  * @param {object} [options] Options
-
  * @param {function} [options.getHeight] `getHeight(element)` should return element
  * height, where element is the wrapper div. Defaults to `element.clientHeight`
  * @param {function} [options.getWidth]  `getWidth(element)` should return element
