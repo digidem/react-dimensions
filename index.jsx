@@ -91,10 +91,14 @@ export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = d
         if (!container) {
           throw new Error('Cannot find container div')
         }
-        this.setState({
-          containerWidth: getWidth(container),
-          containerHeight: getHeight(container)
-        })
+
+        const containerWidth = getWidth(container)
+        const containerHeight = getHeight(container)
+
+        if (containerWidth !== this.state.containerWidth ||
+            containerHeight !== this.state.containerHeight) {
+          this.setState({containerWidth, containerHeight})
+        }
       }
 
       onResize = () => {
@@ -108,6 +112,10 @@ export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = d
       componentDidMount () {
         this.updateDimensions()
         window.addEventListener('resize', this.onResize, false)
+      }
+
+      componentDidUpdate () {
+        this.updateDimensions()
       }
 
       componentWillUnmount () {
