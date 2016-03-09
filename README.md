@@ -34,13 +34,14 @@ import React from 'react'
 import Dimensions from 'react-dimensions'
 
 class MyComponent extends React.Component {
-  render() (
-    <div
-      containerWidth={this.props.containerWidth}
-      containerHeight={this.props.containerHeight}
-    >
-    </div>
-  )
+  render() {
+    return (
+      <div 
+        containerWidth={ this.props.containerWidth } 
+        containerHeight={ this.props.containerHeight }>
+      </div>
+      )
+  }
 }
 
 export default Dimensions()(MyComponent) // Enhanced component
@@ -53,14 +54,15 @@ var React = require('react')
 var Dimensions = require('react-dimensions')
 
 var MyComponent = React.createClass({
-  render: function() {(
-    <div
-      containerWidth={this.props.containerWidth}
-      containerHeight={this.props.containerHeight}
-    >
-    </div>
-  )}
-}
+  render: function() {
+    return (
+      <div 
+        containerWidth={ this.props.containerWidth } 
+        containerHeight={ this.props.containerHeight }>
+      </div>
+      );
+  }
+})
 
 module.exports = Dimensions()(MyComponent) // Enhanced component
 ```
