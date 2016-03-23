@@ -110,6 +110,10 @@ export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = d
         window.addEventListener('resize', this.onResize, false)
       }
 
+      componentDidUpdate () {
+        this.updateDimensions()
+      }
+
       componentWillUnmount () {
         window.removeEventListener('resize', this.onResize)
       }
