@@ -77,37 +77,64 @@ function defaultGetHeight (element) {
  * module.exports = Dimensions()(MyComponent) // Enhanced component
  *
  */
-export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = defaultGetWidth } = {}) {
+export default function Dimensions (
+  {
+    getHeight = defaultGetHeight,
+    getWidth = defaultGetWidth,
+    refreshInterval = 1000  // TODO: Default to 0?
+  } = {}) {
   return (ComposedComponent) => {
     return class DimensionsHOC extends React.Component {
       // ES7 Class properties
       // http://babeljs.io/blog/2015/06/07/react-on-es6-plus/#property-initializers
-      state = {}
+      lastWidth = 0
+      lastHeight = 0
 
       // Using arrow functions and ES7 Class properties to autobind
       // http://babeljs.io/blog/2015/06/07/react-on-es6-plus/#arrow-functions
-      updateDimensions = () => {
+      getDimensions = () => {
         const container = this.refs.container
         if (!container) {
-          throw new Error('Cannot find container div')
+          // TODO: Is there any problem with initial width/height being set to 0,0?
+          return {
+            containerWidth: 0,
+            containerHeight: 0
+          }
         }
-        this.setState({
+        return {
           containerWidth: getWidth(container),
           containerHeight: getHeight(container)
-        })
+        }
       }
 
       onResize = () => {
         if (this.rqf) return
         this.rqf = window.requestAnimationFrame(() => {
           this.rqf = null
-          this.updateDimensions()
+          this.checkForResize()
         })
       }
 
+      // Check to see if the dimensions have changed, and force an update if necessary.
+      checkForResize = () => {
+        console.log('checkForResize')
+        const dimensions = this.getDimensions()
+        if ((this.lastWidth !== dimensions.containerWidth) ||
+            (this.lastHeight !== dimensions.containerHeight)) {
+          this.lastWidth = dimensions.containerWidth
+          this.lastHeight = dimensions.containerHeight
+          this.forceUpdate()
+        }
+      }
+
       componentDidMount () {
-        this.updateDimensions()
         window.addEventListener('resize', this.onResize, false)
+        if ((typeof refreshInterval === 'number') && (refreshInterval > 0)) {
+          // TODO: This is probably better done with a single global interval and a list of
+          //       components to callback to, but it's fine for now.
+          this.interval = window.setInterval(this.checkForResize, 1000)
+        }
+        this.onResize()
       }
 
       componentDidUpdate () {
@@ -115,14 +142,16 @@ export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = d
       }
 
       componentWillUnmount () {
+        if (this.interval) {
+          window.clearInterval(this.interval)
+        }
         window.removeEventListener('resize', this.onResize)
       }
 
       render () {
         return (
           <div style={style} ref='container'>
-            {(this.state.containerWidth || this.state.containerHeight) &&
-             <ComposedComponent {...this.state} {...this.props} updateDimensions={this.updateDimensions}/>}
+            <ComposedComponent {...this.getDimensions()} {...this.props}/>
           </div>
         )
       }
