@@ -99,15 +99,19 @@ export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = d
 
       onResize = () => {
         if (this.rqf) return
-        this.rqf = window.requestAnimationFrame(() => {
+        this.rqf = this.getWindow().requestAnimationFrame(() => {
           this.rqf = null
           this.updateDimensions()
         })
       }
 
+      getWindow () {
+        return this.refs.container.ownerDocument.defaultView || window;
+      }
+
       componentDidMount () {
         this.updateDimensions()
-        window.addEventListener('resize', this.onResize, false)
+        this.getWindow().addEventListener('resize', this.onResize, false)
       }
 
       componentDidUpdate () {
@@ -115,7 +119,7 @@ export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = d
       }
 
       componentWillUnmount () {
-        window.removeEventListener('resize', this.onResize)
+        this.getWindow().removeEventListener('resize', this.onResize)
       }
 
       render () {
