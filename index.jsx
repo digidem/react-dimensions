@@ -106,7 +106,7 @@ export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = d
       }
 
       getWindow () {
-        return this.refs.container ? (this.refs.container.ownerDocument.defaultView || window) : window
+        return this.refs.container ? (this.refs.container.ownerDocument.defaultView || window) : window;
       }
 
       componentDidMount () {
@@ -114,9 +114,13 @@ export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = d
         this.getWindow().addEventListener('resize', this.onResize, false)
       }
 
+      /* disabling because recursion, read comment here:
+        https://github.com/digidem/react-dimensions/commit/de63939be6a15a9acc441665a8c103cb82443f85
+
       componentDidUpdate () {
         this.updateDimensions()
       }
+      */
 
       componentWillUnmount () {
         this.getWindow().removeEventListener('resize', this.onResize)
