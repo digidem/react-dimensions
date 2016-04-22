@@ -106,7 +106,7 @@ export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = d
       }
 
       getWindow () {
-        return this.refs.container.ownerDocument.defaultView || window;
+        return this.refs.container ? (this.refs.container.ownerDocument.defaultView || window) : window;
       }
 
       componentDidMount () {
