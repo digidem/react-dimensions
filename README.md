@@ -3,7 +3,7 @@
 React [higher-order component](https://gist.github.com/sebmarkbage/ef0bf1f338a7182b6775) to get dimensions of container
 
 
-### `Dimensions([options])`
+### `Dimensions([options], [options.getHeight], [options.getWidth])`
 
 Wraps a react component and adds properties `containerHeight` and
 `containerWidth`. Useful for responsive design. Properties update on
@@ -34,14 +34,13 @@ import React from 'react'
 import Dimensions from 'react-dimensions'
 
 class MyComponent extends React.Component {
-  render() {
-    return (
-      <div 
-        containerWidth={ this.props.containerWidth } 
-        containerHeight={ this.props.containerHeight }>
-      </div>
-      )
-  }
+  render() (
+    <div
+      containerWidth={this.props.containerWidth}
+      containerHeight={this.props.containerHeight}
+    >
+    </div>
+  )
 }
 
 export default Dimensions()(MyComponent) // Enhanced component
@@ -54,15 +53,14 @@ var React = require('react')
 var Dimensions = require('react-dimensions')
 
 var MyComponent = React.createClass({
-  render: function() {
-    return (
-      <div 
-        containerWidth={ this.props.containerWidth } 
-        containerHeight={ this.props.containerHeight }>
-      </div>
-      );
-  }
-})
+  render: function() {(
+    <div
+      containerWidth={this.props.containerWidth}
+      containerHeight={this.props.containerHeight}
+    >
+    </div>
+  )}
+}
 
 module.exports = Dimensions()(MyComponent) // Enhanced component
 ```
