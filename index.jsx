@@ -33,6 +33,8 @@ function defaultGetHeight (element) {
  * height, where element is the wrapper div. Defaults to `element.clientHeight`
  * @param {function} [options.getWidth]  `getWidth(element)` should return element
  * width, where element is the wrapper div. Defaults to `element.clientWidth`
+ * @param {object} [options.styleOverride] override default styles for the
+ * wrapper div created by react-dimensions.
  * @return {function}                   Returns a higher-order component that can be
  * used to enhance a react component `Dimensions()(MyComponent)`
  *
@@ -77,7 +79,7 @@ function defaultGetHeight (element) {
  * module.exports = Dimensions()(MyComponent) // Enhanced component
  *
  */
-export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = defaultGetWidth } = {}) {
+export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = defaultGetWidth, styleOverride = {} } = {}) {
   return (ComposedComponent) => {
     return class DimensionsHOC extends React.Component {
       // ES7 Class properties
@@ -119,8 +121,9 @@ export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = d
       }
 
       render () {
+        const finalStyle = Object.assign({}, style, styleOverride)
         return (
-          <div style={style} ref='container'>
+          <div style={finalStyle} ref='container'>
             {(this.state.containerWidth || this.state.containerHeight) &&
              <ComposedComponent {...this.state} {...this.props} updateDimensions={this.updateDimensions}/>}
           </div>
