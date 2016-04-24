@@ -26,14 +26,31 @@ const EnhancedComponent = Dimensions()(MyComponent)
 const div = document.createElement('div')
 document.body.appendChild(div)
 
+class MyExample extends React.Component {
+
+  state = {
+    right: 100
+  }
+
+  componentDidMount () {
+    setInterval(() => this.setState({ right: 300 }), 1000)
+  }
+
+  render () {
+    return (
+      <div style={{
+        position: 'absolute',
+        top: 20,
+        right: this.state.right,
+        bottom: 20,
+        left: 50
+      }}>
+        <EnhancedComponent />
+      </div>
+    )
+  }
+}
+
 ReactDom.render((
-  <div style={{
-    position: 'absolute',
-    top: 20,
-    right: 50,
-    bottom: 20,
-    left: 50
-  }}>
-    <EnhancedComponent />
-  </div>
+  <MyExample/>
 ), div)

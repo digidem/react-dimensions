@@ -3,7 +3,7 @@
 React [higher-order component](https://gist.github.com/sebmarkbage/ef0bf1f338a7182b6775) to get dimensions of container
 
 
-### `Dimensions([options])`
+### `Dimensions([options], [options.getHeight], [options.getWidth])`
 
 Wraps a react component and adds properties `containerHeight` and
 `containerWidth`. Useful for responsive design. Properties update on
