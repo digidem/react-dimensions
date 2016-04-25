@@ -16,7 +16,7 @@ class MyComponent extends React.Component {
         height: this.props.containerHeight
       }}>
       {`${this.props.containerWidth}px x ${this.props.containerHeight}px`}
-			</div>
+      </div>
 		)
   }
 }
