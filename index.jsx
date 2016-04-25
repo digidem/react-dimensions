@@ -26,8 +26,6 @@ function defaultGetHeight (element) {
  * or as an [ES7 class decorator](https://github.com/wycats/javascript-decorators)
  * (see examples)
  *
- * v1.0.0 is for React v0.14 only. Use ^0.1.0 for React v0.13
- *
  * @param {object} [options]
  * @param {function} [options.getHeight] A function that is passed an element and returns element
  * height, where element is the wrapper div. Defaults to `(element) => element.clientHeight`

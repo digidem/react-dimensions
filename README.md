@@ -1,6 +1,12 @@
 # react-dimensions
 
-React [higher-order component](https://gist.github.com/sebmarkbage/ef0bf1f338a7182b6775) to get dimensions of container
+React [higher-order component](https://gist.github.com/sebmarkbage/ef0bf1f338a7182b6775) to get the dimensions of a wrapper element and pass them as properties to the child element.
+
+v^1.0.0 is for React v0.14 and above. Use ^0.1.0 for React v0.13
+
+## Why? How?
+
+Some React components require a width to be set in pixels, and cannot be set to `100%`. This is a challenge for responsive design. This component creates a wrapper `<div>` and sets the width and height to `100%`, and then passes the dimensions of this `div`  to your component.
 
 ## Installation
 
@@ -24,11 +30,9 @@ Can be used as a
 or as an [ES7 class decorator](https://github.com/wycats/javascript-decorators)
 (see examples)
 
-v1.0.0 is for React v0.14 only. Use ^0.1.0 for React v0.13
-
 **Parameters**
 
--   `options` **[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)=**
+-   `options` **[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)=** 
     -   `options.getHeight` **[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)=** A function that is passed an element and returns element
         height, where element is the wrapper div. Defaults to `(element) => element.clientHeight`
     -   `options.getWidth` **[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)=** A function that is passed an element and returns element
