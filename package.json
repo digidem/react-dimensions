@@ -9,7 +9,7 @@
   "scripts": {
     "start": "./node_modules/.bin/budo example.jsx --live --open -- -t babelify",
     "build": "npm test && babel index.jsx -o index.js",
-    "doc": "dox -r < index.jsx | doxme --readme > README.md",
+    "doc": "documentation readme index.jsx --section 'API'",
     "prepublish": "npm run build && npm run doc",
     "test": "standard"
   },
@@ -33,16 +33,18 @@
   },
   "homepage": "https://github.com/digidem/react-dimensions#readme",
   "devDependencies": {
-    "babel": "^5.8.23",
-    "babel-eslint": "^4.1.3",
-    "babelify": "^6.4.0",
-    "budo": "^5.1.3",
-    "dox": "^0.8.0",
-    "doxme": "^1.8.2",
-    "eslint-config-standard": "^4.4.0",
-    "eslint-config-standard-react": "^1.1.0",
-    "eslint-plugin-react": "^3.6.2",
-    "standard": "^5.3.1"
+    "babel": "^6.5.2",
+    "babel-eslint": "^6.0.3",
+    "babel-plugin-transform-class-properties": "^6.6.0",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "babelify": "^7.2.0",
+    "budo": "^8.2.1",
+    "documentation": "^4.0.0-beta2",
+    "eslint-config-standard": "^5.2.0",
+    "eslint-config-standard-react": "^2.3.0",
+    "eslint-plugin-react": "^5.0.1",
+    "standard": "^6.0.8"
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0",

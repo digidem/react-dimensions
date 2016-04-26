@@ -26,21 +26,13 @@ function defaultGetHeight (element) {
  * or as an [ES7 class decorator](https://github.com/wycats/javascript-decorators)
  * (see examples)
  *
- * v1.0.0 is for React v0.14 only. Use ^0.1.0 for React v0.13
- *
- * @param {object} [options] Options
- * @param {function} [options.getHeight] `getHeight(element)` should return element
- * height, where element is the wrapper div. Defaults to `element.clientHeight`
- * @param {function} [options.getWidth]  `getWidth(element)` should return element
- * width, where element is the wrapper div. Defaults to `element.clientWidth`
- * @return {function}                   Returns a higher-order component that can be
+ * @param {object} [options]
+ * @param {function} [options.getHeight] A function that is passed an element and returns element
+ * height, where element is the wrapper div. Defaults to `(element) => element.clientHeight`
+ * @param {function} [options.getWidth]  A function that is passed an element and returns element
+ * width, where element is the wrapper div. Defaults to `(element) => element.clientWidth`
+ * @return {function}                   A higher-order component that can be
  * used to enhance a react component `Dimensions()(MyComponent)`
- *
- * ### Live Example
- *
- * Will open a browser window for localhost:9966
- *
- * `npm i && npm i react react-dom && npm start`
  *
  * @example
  * // ES2015
@@ -114,14 +106,6 @@ export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = d
         this.getWindow().addEventListener('resize', this.onResize, false)
       }
 
-      /* disabling because recursion, read comment here:
-        https://github.com/digidem/react-dimensions/commit/de63939be6a15a9acc441665a8c103cb82443f85
-
-      componentDidUpdate () {
-        this.updateDimensions()
-      }
-      */
-
       componentWillUnmount () {
         this.getWindow().removeEventListener('resize', this.onResize)
       }
@@ -130,7 +114,7 @@ export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = d
         return (
           <div style={style} ref='container'>
             {(this.state.containerWidth || this.state.containerHeight) &&
-             <ComposedComponent {...this.state} {...this.props} updateDimensions={this.updateDimensions}/>}
+              <ComposedComponent {...this.state} {...this.props} updateDimensions={this.updateDimensions}/>}
           </div>
         )
       }
