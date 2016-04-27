@@ -21,19 +21,40 @@ class MyComponent extends React.Component {
   }
 }
 
-const EnhancedComponent = Dimensions()(MyComponent)
+const EnhancedComponent = Dimensions({elementResize: true})(MyComponent)
 
 const div = document.createElement('div')
 document.body.appendChild(div)
 
+class Example extends React.Component {
+  state = {
+    right: 50
+  }
+
+  handleButtonClick = () => {
+    this.setState({
+      right: this.state.right === 50 ? 200 : 50
+    })
+  }
+
+  render () {
+    return (
+      <div>
+        <button onClick={this.handleButtonClick}>Resize container</button>
+        <div style={{
+          position: 'absolute',
+          top: 50,
+          right: this.state.right,
+          bottom: 50,
+          left: 50
+        }}>
+          <EnhancedComponent />
+        </div>
+      </div>
+    )
+  }
+}
+
 ReactDom.render((
-  <div style={{
-    position: 'absolute',
-    top: 20,
-    right: 50,
-    bottom: 20,
-    left: 50
-  }}>
-    <EnhancedComponent />
-  </div>
+  <Example />
 ), div)

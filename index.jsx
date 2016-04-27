@@ -1,4 +1,5 @@
 import React from 'react'
+import onElementResize from 'element-resize-event'
 
 const defaultContainerStyle = {
   width: '100%',
@@ -35,6 +36,8 @@ function defaultGetHeight (element) {
  * The dimensions of this `div` are what are passed as props to your component. The default style is
  * `{ width: '100%', height: '100%', padding: 0, border: 0 }` which will cause the `div` to fill its
  * parent in most cases. If you are using a flexbox layout you will want to change this default style.
+ * @param {boolean} [options.elementResize=false] Set true to watch the wrapper `div` for changes in
+ * size which are not a result of window resizing - e.g. changes to the flexbox and other layout.
  * @return {function}                   A higher-order component that can be
  * used to enhance a react component `Dimensions()(MyComponent)`
  *
@@ -76,7 +79,8 @@ function defaultGetHeight (element) {
 export default function Dimensions ({
     getHeight = defaultGetHeight,
     getWidth = defaultGetWidth,
-    containerStyle = defaultContainerStyle
+    containerStyle = defaultContainerStyle,
+    elementResize = false
   } = {}) {
   return (ComposedComponent) => {
     return class DimensionsHOC extends React.Component {
@@ -119,7 +123,14 @@ export default function Dimensions ({
           throw new Error('Cannot find container div')
         }
         this.updateDimensions()
-        this.getWindow().addEventListener('resize', this.onResize, false)
+        if (elementResize) {
+          // Experimental: `element-resize-event` fires when an element resizes.
+          // It attaches its own window resize listener and also uses
+          // requestAnimationFrame, so we can just call `this.updateDimensions`.
+          onElementResize(this.refs.container, this.updateDimensions)
+        } else {
+          this.getWindow().addEventListener('resize', this.onResize, false)
+        }
       }
 
       componentWillUnmount () {
