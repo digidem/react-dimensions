@@ -1,6 +1,6 @@
 import React from 'react'
 
-const style = {
+const defaultContainerStyle = {
   width: '100%',
   height: '100%',
   padding: 0,
@@ -31,6 +31,10 @@ function defaultGetHeight (element) {
  * height, where element is the wrapper div. Defaults to `(element) => element.clientHeight`
  * @param {function} [options.getWidth]  A function that is passed an element and returns element
  * width, where element is the wrapper div. Defaults to `(element) => element.clientWidth`
+ * @param {object} [options.containerStyle] A style object for the `<div>` that will wrap your component.
+ * The dimensions of this `div` are what are passed as props to your component. The default style is
+ * `{ width: '100%', height: '100%', padding: 0, border: 0 }` which will cause the `div` to fill its
+ * parent in most cases. If you are using a flexbox layout you will want to change this default style.
  * @return {function}                   A higher-order component that can be
  * used to enhance a react component `Dimensions()(MyComponent)`
  *
@@ -69,7 +73,11 @@ function defaultGetHeight (element) {
  * module.exports = Dimensions()(MyComponent) // Enhanced component
  *
  */
-export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = defaultGetWidth } = {}) {
+export default function Dimensions ({
+    getHeight = defaultGetHeight,
+    getWidth = defaultGetWidth,
+    containerStyle = defaultContainerStyle
+  } = {}) {
   return (ComposedComponent) => {
     return class DimensionsHOC extends React.Component {
       // ES7 Class properties
@@ -117,7 +125,7 @@ export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = d
 
       render () {
         return (
-          <div style={style} ref='container'>
+          <div style={containerStyle} ref='container'>
             {(this.state.containerWidth || this.state.containerHeight) &&
               <ComposedComponent {...this.state} {...this.props} updateDimensions={this.updateDimensions}/>}
           </div>

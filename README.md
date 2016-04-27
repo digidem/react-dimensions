@@ -37,6 +37,10 @@ or as an [ES7 class decorator](https://github.com/wycats/javascript-decorators)
         height, where element is the wrapper div. Defaults to `(element) => element.clientHeight`
     -   `options.getWidth` **[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)=** A function that is passed an element and returns element
         width, where element is the wrapper div. Defaults to `(element) => element.clientWidth`
+    -   `options.containerStyle` **[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)=** A style object for the `<div>` that will wrap your component.
+        The dimensions of this `div` are what are passed as props to your component. The default style is
+        `{ width: '100%', height: '100%', padding: 0, border: 0 }` which will cause the `div` to fill its
+        parent in most cases. If you are using a flexbox layout you will want to change this default style.
 
 **Examples**
 
