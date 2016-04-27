@@ -88,10 +88,6 @@ export default function Dimensions ({
       // http://babeljs.io/blog/2015/06/07/react-on-es6-plus/#arrow-functions
       updateDimensions = () => {
         const container = this.refs.container
-        if (!container) {
-          throw new Error('Cannot find container div')
-        }
-
         const containerWidth = getWidth(container)
         const containerHeight = getHeight(container)
 
@@ -119,6 +115,9 @@ export default function Dimensions ({
       }
 
       componentDidMount () {
+        if (!this.refs.container) {
+          throw new Error('Cannot find container div')
+        }
         this.updateDimensions()
         this.getWindow().addEventListener('resize', this.onResize, false)
       }
