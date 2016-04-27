@@ -97,8 +97,13 @@ export default function Dimensions ({ getHeight = defaultGetHeight, getWidth = d
         })
       }
 
+      // If the component is mounted in a different window to the javascript
+      // context, as with https://github.com/JakeGinnivan/react-popout
+      // then the `window` global will be different from the `window` that
+      // contains the component.
+      // Depends on `defaultView` which is not supported <IE9
       getWindow () {
-        return this.refs.container ? (this.refs.container.ownerDocument.defaultView || window) : window;
+        return this.refs.container ? (this.refs.container.ownerDocument.defaultView || window) : window
       }
 
       componentDidMount () {
