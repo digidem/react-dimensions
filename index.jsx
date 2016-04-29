@@ -1,5 +1,5 @@
-import React from 'react'
-import onElementResize from 'element-resize-event'
+const React = require('react')
+const onElementResize = require('element-resize-event')
 
 const defaultContainerStyle = {
   width: '100%',
@@ -76,7 +76,7 @@ function defaultGetHeight (element) {
  * module.exports = Dimensions()(MyComponent) // Enhanced component
  *
  */
-export default function Dimensions ({
+module.exports = function Dimensions ({
     getHeight = defaultGetHeight,
     getWidth = defaultGetWidth,
     containerStyle = defaultContainerStyle,
