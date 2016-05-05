@@ -137,7 +137,9 @@ module.exports = function Dimensions ({
         this.getWindow().removeEventListener('resize', this.onResize)
       }
 
-      getWrappedInstance = () => this.refs.wrappedInstance;
+      getWrappedInstance () {
+        this.refs.wrappedInstance
+      }
 
       render () {
         return (
