@@ -137,11 +137,19 @@ module.exports = function Dimensions ({
         this.getWindow().removeEventListener('resize', this.onResize)
       }
 
+      getWrappedInstance = () => this.refs.wrappedInstance;
+
       render () {
         return (
           <div style={containerStyle} ref='container'>
             {(this.state.containerWidth || this.state.containerHeight) &&
-              <ComposedComponent {...this.state} {...this.props} updateDimensions={this.updateDimensions}/>}
+              <ComposedComponent
+                {...this.state}
+                {...this.props}
+                updateDimensions={this.updateDimensions}
+                ref='wrappedInstance'
+              />
+            }
           </div>
         )
       }
