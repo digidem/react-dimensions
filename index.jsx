@@ -136,7 +136,14 @@ module.exports = function Dimensions ({
       componentWillUnmount () {
         this.getWindow().removeEventListener('resize', this.onResize)
       }
-
+      
+      /**
+       * Returns the underlying wrapped component instance.
+       * Useful if you need to access a method or property of the component
+       * passed to react-dimensions.
+       * 
+       * @return {object} The rendered React component
+       **/
       getWrappedInstance () {
         this.refs.wrappedInstance
       }
