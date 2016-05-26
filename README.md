@@ -18,7 +18,7 @@ $ npm install react-dimensions
 
 ## API
 
-### Dimensions
+### Dimensions([options])(MyComponent)
 
 Wraps a react component and adds properties `containerHeight` and
 `containerWidth`. Useful for responsive design. Properties update on
@@ -32,7 +32,7 @@ or as an [ES7 class decorator](https://github.com/wycats/javascript-decorators)
 
 **Parameters**
 
--   `options` **[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)=** 
+-   `options` **[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)=**
     -   `options.getHeight` **[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)=** A function that is passed an element and returns element
         height, where element is the wrapper div. Defaults to `(element) => element.clientHeight`
     -   `options.getWidth` **[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)=** A function that is passed an element and returns element
@@ -84,6 +84,14 @@ module.exports = Dimensions()(MyComponent) // Enhanced component
 
 Returns **[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** A higher-order component that can be
 used to enhance a react component `Dimensions()(MyComponent)`
+
+### getWrappedInstance()
+
+Returns the underlying wrapped component instance.
+Useful if you need to access a method or property of the component
+passed to react-dimensions.
+
+Returns **[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** The wrapped React component instance
 
 ## Live Example
 
