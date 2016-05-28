@@ -10,7 +10,7 @@
     "start": "./node_modules/.bin/budo example.jsx --live --open -- -t babelify",
     "build": "npm test && babel index.jsx -o index.js",
     "doc": "documentation readme index.jsx --section 'API'",
-    "prepublish": "npm run build && npm run doc",
+    "prepublish": "npm run build",
     "test": "standard"
   },
   "repository": {
