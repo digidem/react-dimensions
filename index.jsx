@@ -149,9 +149,13 @@ module.exports = function Dimensions ({
       }
 
       render () {
+        const {containerWidth, containerHeight} = this.state
+        if (!containerWidth && !containerHeight) {
+          console.warn('Wrapper div has no height or width, try overriding style with `containerStyle` option')
+        }
         return (
           <div style={containerStyle} ref='container'>
-            {(this.state.containerWidth || this.state.containerHeight) &&
+            {(containerWidth || containerHeight) &&
               <ComposedComponent
                 {...this.state}
                 {...this.props}
