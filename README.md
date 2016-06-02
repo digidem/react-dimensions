@@ -6,7 +6,7 @@ v^1.0.0 is for React v0.14 and above. Use ^0.1.0 for React v0.13
 
 ## Why? How?
 
-Some React components require a width to be set in pixels, and cannot be set to `100%`. This is a challenge for responsive design. This component creates a wrapper `<div>` and sets the width and height to `100%`, and then passes the dimensions of this `div`  to your component.
+Some React components require a width to be set in pixels, and cannot be set to `100%`. This is a challenge for responsive design. This component measures the size of the parent node, and then passes these dimensions to your component.
 
 ## Installation
 
@@ -38,9 +38,8 @@ or as an [ES7 class decorator](https://github.com/wycats/javascript-decorators)
     -   `options.getWidth` **[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)=** A function that is passed an element and returns element
         width, where element is the wrapper div. Defaults to `(element) => element.clientWidth`
     -   `options.containerStyle` **[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)=** A style object for the `<div>` that will wrap your component.
-        The dimensions of this `div` are what are passed as props to your component. The default style is
-        `{ width: '100%', height: '100%', padding: 0, border: 0 }` which will cause the `div` to fill its
-        parent in most cases. If you are using a flexbox layout you will want to change this default style.
+        If you are using a flexbox layout you will need to style this `div` rather than your wrapped component (because flexbox only works with direct children). The default style is
+        `{ margin: 0, padding: 0, border: 0 }`.
     -   `options.elementResize` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)=** Set true to watch the wrapper `div` for changes in
         size which are not a result of window resizing - e.g. changes to the flexbox and other layout. (optional, default `false`)
 
