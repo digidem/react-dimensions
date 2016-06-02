@@ -2,10 +2,9 @@ const React = require('react')
 const onElementResize = require('element-resize-event')
 
 const defaultContainerStyle = {
-  width: '100%',
-  height: '100%',
   padding: 0,
-  border: 0
+  border: 0,
+  margin: 0
 }
 
 function defaultGetWidth (element) {
@@ -91,7 +90,7 @@ module.exports = function Dimensions ({
       // Using arrow functions and ES7 Class properties to autobind
       // http://babeljs.io/blog/2015/06/07/react-on-es6-plus/#arrow-functions
       updateDimensions = () => {
-        const container = this.refs.container
+        const container = this._parent
         const containerWidth = getWidth(container)
         const containerHeight = getHeight(container)
 
@@ -122,12 +121,13 @@ module.exports = function Dimensions ({
         if (!this.refs.container) {
           throw new Error('Cannot find container div')
         }
+        this._parent = this.refs.container.parentNode
         this.updateDimensions()
         if (elementResize) {
           // Experimental: `element-resize-event` fires when an element resizes.
           // It attaches its own window resize listener and also uses
           // requestAnimationFrame, so we can just call `this.updateDimensions`.
-          onElementResize(this.refs.container, this.updateDimensions)
+          onElementResize(this._parent, this.updateDimensions)
         } else {
           this.getWindow().addEventListener('resize', this.onResize, false)
         }

@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
 - Added a CHANGELOG.md
+- **Breaking:** (maybe) Measure the parent node rather than worrying about wrapper styling. We still need to wrap the inner component with a `div` (no way around that I think) so if you are using a flexbox layout you will need to style that `div` with `options.containerStyle`.
 
 ## [1.2.0] - 2016-05-26
 ### Added
