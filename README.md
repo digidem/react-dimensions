@@ -89,7 +89,7 @@ used to enhance a react component `Dimensions()(MyComponent)`
 
 Returns the underlying wrapped component instance.
 Useful if you need to access a method or property of the component
-passed to react-dimensions.
+passed to react-dimensions. Does not currently work for stateless function components see [#30](https://github.com/digidem/react-dimensions/issues/30)
 
 Returns **[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** The wrapped React component instance
 
