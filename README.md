@@ -40,6 +40,7 @@ or as an [ES7 class decorator](https://github.com/wycats/javascript-decorators)
     -   `options.containerStyle` **[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)=** A style object for the `<div>` that will wrap your component.
         If you are using a flexbox layout you will need to style this `div` rather than your wrapped component (because flexbox only works with direct children). The default style is
         `{ margin: 0, padding: 0, border: 0 }`.
+    -   `options.className` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)=** Control the class name set on the wrapper `<div>`
     -   `options.elementResize` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)=** Set true to watch the wrapper `div` for changes in
         size which are not a result of window resizing - e.g. changes to the flexbox and other layout. (optional, default `false`)
 
