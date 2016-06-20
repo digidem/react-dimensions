@@ -36,6 +36,7 @@ function defaultGetHeight (element) {
  * The dimensions of this `div` are what are passed as props to your component. The default style is
  * `{ width: '100%', height: '100%', padding: 0, border: 0 }` which will cause the `div` to fill its
  * parent in most cases. If you are using a flexbox layout you will want to change this default style.
+ * @param {string} [options.className] Control the class name set on the wrapper `<div>`
  * @param {boolean} [options.elementResize=false] Set true to watch the wrapper `div` for changes in
  * size which are not a result of window resizing - e.g. changes to the flexbox and other layout.
  * @return {function}                   A higher-order component that can be
@@ -80,6 +81,7 @@ module.exports = function Dimensions ({
     getHeight = defaultGetHeight,
     getWidth = defaultGetWidth,
     containerStyle = defaultContainerStyle,
+    className = null,
     elementResize = false
   } = {}) {
   return (ComposedComponent) => {
@@ -154,7 +156,7 @@ module.exports = function Dimensions ({
           console.warn('Wrapper div has no height or width, try overriding style with `containerStyle` option')
         }
         return (
-          <div style={containerStyle} ref='container'>
+          <div className={className} style={containerStyle} ref='container'>
             {(containerWidth || containerHeight) &&
               <ComposedComponent
                 {...this.state}

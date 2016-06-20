@@ -21,7 +21,7 @@ class MyComponent extends React.Component {
   }
 }
 
-const EnhancedComponent = Dimensions({elementResize: true})(MyComponent)
+const EnhancedComponent = Dimensions({elementResize: true, className: 'react-dimensions-wrapper'})(MyComponent)
 
 const div = document.createElement('div')
 document.body.appendChild(div)
