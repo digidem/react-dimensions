@@ -1,3 +1,4 @@
+const _debounce = require('lodash.debounce')
 const React = require('react')
 const onElementResize = require('element-resize-event')
 
@@ -31,6 +32,12 @@ function defaultGetHeight (element) {
  * height, where element is the wrapper div. Defaults to `(element) => element.clientHeight`
  * @param {function} [options.getWidth]  A function that is passed an element and returns element
  * width, where element is the wrapper div. Defaults to `(element) => element.clientWidth`
+ * @param {number} [options.debounce] Optionally debounce the `onResize` callback function by
+ * supplying the delay time in milliseconds. This will prevent excessive dimension
+ * updates. See
+ * https://lodash.com/docs#debounce for more information. Defaults to `0`, which disables debouncing.
+ * @param {object} [options.debounceOpts] Options to pass to the debounce function. See
+ * https://lodash.com/docs#debounce for all available options. Defaults to `{}`.
  * @param {object} [options.containerStyle] A style object for the `<div>` that will wrap your component.
  * The dimensions of this `div` are what are passed as props to your component. The default style is
  * `{ width: '100%', height: '100%', padding: 0, border: 0 }` which will cause the `div` to fill its
@@ -79,6 +86,8 @@ function defaultGetHeight (element) {
 module.exports = function Dimensions ({
     getHeight = defaultGetHeight,
     getWidth = defaultGetWidth,
+    debounce = 0,
+    debounceOpts = {},
     containerStyle = defaultContainerStyle,
     className = null,
     elementResize = false
@@ -102,13 +111,18 @@ module.exports = function Dimensions ({
         }
       }
 
-      onResize = () => {
+      // Immediate onResize callback with no debounce
+      onResizeImmediate = () => {
         if (this.rqf) return
         this.rqf = this.getWindow().requestAnimationFrame(() => {
           this.rqf = null
           this.updateDimensions()
         })
       }
+
+      // Optionally-debounced onResize callback
+      onResize = debounce === 0 ? this.onResizeImmediate
+        : _debounce(this.onResizeImmediate, debounce, debounceOpts)
 
       // If the component is mounted in a different window to the javascript
       // context, as with https://github.com/JakeGinnivan/react-popout

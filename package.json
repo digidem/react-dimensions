@@ -51,6 +51,7 @@
     "react-dom": "^0.14.0 || ^15.0.0"
   },
   "dependencies": {
-    "element-resize-event": "^2.0.4"
+    "element-resize-event": "^2.0.4",
+    "lodash.debounce": "^4.0.6"
   }
 }
