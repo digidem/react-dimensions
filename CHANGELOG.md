@@ -3,8 +3,12 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+
+## [1.3.0] - 2016-07-08
 ### Added
 - Added a CHANGELOG.md
+- Add option `className` for setting an optional class on the wrapper `<div>` ([#32](https://github.com/digidem/react-dimensions/pull/32))
 
 ## [1.2.0] - 2016-05-26
 ### Added
@@ -29,7 +33,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Now works in popup windows and iframes with a different `window` context (#22)
 
 
-[Unreleased]: https://github.com/digidem/react-dimensions/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/digidem/react-dimensions/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.0.2...v1.1.0
