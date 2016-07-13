@@ -147,7 +147,7 @@ module.exports = function Dimensions ({
        * @return {object} The rendered React component
        **/
       getWrappedInstance () {
-        this.refs.wrappedInstance
+        return this.refs.wrappedInstance
       }
 
       render () {
