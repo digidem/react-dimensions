@@ -18,7 +18,7 @@ $ npm install react-dimensions
 
 ## API
 
-### Dimensions([options])(MyComponent)
+### index
 
 Wraps a react component and adds properties `containerHeight` and
 `containerWidth`. Useful for responsive design. Properties update on
@@ -32,18 +32,24 @@ or as an [ES7 class decorator](https://github.com/wycats/javascript-decorators)
 
 **Parameters**
 
--   `options` **[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)=**
-    -   `options.getHeight` **[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)=** A function that is passed an element and returns element
-        height, where element is the wrapper div. Defaults to `(element) => element.clientHeight`
-    -   `options.getWidth` **[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)=** A function that is passed an element and returns element
+-   `options` **\[[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** 
+    -   `options.getWidth` **\[[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)]** A function that is passed an element and returns element
         width, where element is the wrapper div. Defaults to `(element) => element.clientWidth`
-    -   `options.containerStyle` **[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)=** A style object for the `<div>` that will wrap your component.
+    -   `options.containerStyle` **\[[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** A style object for the `<div>` that will wrap your component.
         The dimensions of this `div` are what are passed as props to your component. The default style is
         `{ width: '100%', height: '100%', padding: 0, border: 0 }` which will cause the `div` to fill its
         parent in most cases. If you are using a flexbox layout you will want to change this default style.
-    -   `options.className` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)=** Control the class name set on the wrapper `<div>`
-    -   `options.elementResize` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)=** Set true to watch the wrapper `div` for changes in
+    -   `options.className` **\[[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** Control the class name set on the wrapper `<div>`
+    -   `options.elementResize` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]** Set true to watch the wrapper `div` for changes in
         size which are not a result of window resizing - e.g. changes to the flexbox and other layout. (optional, default `false`)
+    -   `options.getHeight` **\[[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)]** A function that is passed an element and returns element
+        height, where element is the wrapper div. Defaults to `(element) => element.clientHeight`
+-   `$0` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)**  (optional, default `{}`)
+    -   `$0.getHeight`   (optional, default `defaultGetHeight`)
+    -   `$0.getWidth`   (optional, default `defaultGetWidth`)
+    -   `$0.containerStyle`   (optional, default `defaultContainerStyle`)
+    -   `$0.className`   (optional, default `null`)
+    -   `$0.elementResize`   (optional, default `false`)
 
 **Examples**
 
@@ -85,14 +91,6 @@ module.exports = Dimensions()(MyComponent) // Enhanced component
 
 Returns **[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** A higher-order component that can be
 used to enhance a react component `Dimensions()(MyComponent)`
-
-### getWrappedInstance()
-
-Returns the underlying wrapped component instance.
-Useful if you need to access a method or property of the component
-passed to react-dimensions. Does not currently work for stateless function components see [#30](https://github.com/digidem/react-dimensions/issues/30)
-
-Returns **[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** The wrapped React component instance
 
 ## Live Example
 

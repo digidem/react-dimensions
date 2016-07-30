@@ -40,7 +40,7 @@
     "babel-preset-react": "^6.5.0",
     "babelify": "^7.2.0",
     "budo": "^8.2.1",
-    "documentation": "^4.0.0-beta2",
+    "documentation": "^4.0.0-beta9",
     "eslint-config-standard": "^5.2.0",
     "eslint-config-standard-react": "^2.3.0",
     "eslint-plugin-react": "^5.0.1",
