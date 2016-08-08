@@ -100,7 +100,9 @@ module.exports = function Dimensions ({
 
       // Using arrow functions and ES7 Class properties to autobind
       // http://babeljs.io/blog/2015/06/07/react-on-es6-plus/#arrow-functions
-      updateDimensions = () => {
+
+      // Immediate updateDimensions callback with no debounce
+      updateDimensionsImmediate = () => {
         const container = this._parent
         const containerWidth = getWidth(container)
         const containerHeight = getHeight(container)
@@ -111,18 +113,17 @@ module.exports = function Dimensions ({
         }
       }
 
-      // Immediate onResize callback with no debounce
-      onResizeImmediate = () => {
+      // Optionally-debounced updateDimensions callback
+      updateDimensions = debounce === 0 ? this.updateDimensionsImmediate
+        : _debounce(this.updateDimensionsImmediate, debounce, debounceOpts)
+
+      onResize = () => {
         if (this.rqf) return
         this.rqf = this.getWindow().requestAnimationFrame(() => {
           this.rqf = null
           this.updateDimensions()
         })
       }
-
-      // Optionally-debounced onResize callback
-      onResize = debounce === 0 ? this.onResizeImmediate
-        : _debounce(this.onResizeImmediate, debounce, debounceOpts)
 
       // If the component is mounted in a different window to the javascript
       // context, as with https://github.com/JakeGinnivan/react-popout
