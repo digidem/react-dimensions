@@ -37,6 +37,11 @@ or as an [ES7 class decorator](https://github.com/wycats/javascript-decorators)
         height, where element is the wrapper div. Defaults to `(element) => element.clientHeight`
     -   `options.getWidth` **[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)=** A function that is passed an element and returns element
         width, where element is the wrapper div. Defaults to `(element) => element.clientWidth`
+    -   `options.debounce` **\[[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** Optionally debounce the `onResize` callback function by 
+        supplying the delay time in milliseconds. This will prevent excessive dimension 
+        updates. See <https://lodash.com/docs#debounce> for more information. Defaults to `0`, which disables debouncing. 
+    -   `options.debounceOpts` **\[[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** Options to pass to the debounce function. See 
+        <https://lodash.com/docs#debounce> for all available options. Defaults to `{}`.
     -   `options.containerStyle` **[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)=** A style object for the `<div>` that will wrap your component.
         If you are using a flexbox layout you will need to style this `div` rather than your wrapped component (because flexbox only works with direct children). The default style is
         `{ margin: 0, padding: 0, border: 0 }`.
