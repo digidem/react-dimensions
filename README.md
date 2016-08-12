@@ -16,6 +16,12 @@ Requires [nodejs](http://nodejs.org/).
 $ npm install react-dimensions
 ```
 
+To install the pre-release version:
+
+```sh
+$ npm install react-dimensions@next
+```
+
 ## API
 
 ### Dimensions([options])(MyComponent)
