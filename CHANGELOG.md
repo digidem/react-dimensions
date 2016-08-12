@@ -2,10 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [2.0.0-alpha1] - 2016-08-12
 ### Added
 - Added a CHANGELOG.md
-- **Breaking:** (maybe) Measure the parent node rather than worrying about wrapper styling. We still need to wrap the inner component with a `div` (no way around that I think) so if you are using a flexbox layout you will need to style that `div` with `options.containerStyle`.
+- **Breaking:** Measure the parent node rather than the wrapper. You will need to wrap this component in a `<div>` and style that.
+- **Breaking:** Removed `containerStyle` and `containerClass` options - the wrapper `<div>` is no longer used for calculating dimensions.
+- **Breaking:** Removed options `getWidth` and `getHeight`, replaced with `getDimensions`. This will allow replacing the current dimensions calculation with a single call to `getBoundingClientRect()`, rather than two. Currently we are still using `element.clientWidth` and `element.clientHeight` for dimension calculation.
 
 ## [1.2.0] - 2016-05-26
 ### Added
@@ -30,7 +32,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Now works in popup windows and iframes with a different `window` context (#22)
 
 
-[Unreleased]: https://github.com/digidem/react-dimensions/compare/v1.2.0...HEAD
+[2.0.0-alpha1]: https://github.com/digidem/react-dimensions/compare/v1.2.0...v2.0.0-alpha1
 [1.2.0]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.0.2...v1.1.0
