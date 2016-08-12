@@ -2,12 +2,6 @@ const _debounce = require('lodash.debounce')
 const React = require('react')
 const onElementResize = require('element-resize-event')
 
-const defaultContainerStyle = {
-  padding: 0,
-  border: 0,
-  margin: 0
-}
-
 function defaultGetDimensions (element) {
   return [element.clientWidth, element.clientHeight]
 }
@@ -83,8 +77,6 @@ module.exports = function Dimensions ({
     getDimensions = defaultGetDimensions,
     debounce = 0,
     debounceOpts = {},
-    containerStyle = defaultContainerStyle,
-    className = null,
     elementResize = false
   } = {}) {
   return (ComposedComponent) => {
@@ -167,8 +159,13 @@ module.exports = function Dimensions ({
           // only trigger a warning about the wrapper div if we already have a reference to it
           console.warn('Wrapper div has no height or width, try overriding style with `containerStyle` option')
         }
+        const wrapperStyle = {
+          overflow: 'visible',
+          height: 0,
+          width: 0
+        }
         return (
-          <div className={className} style={containerStyle} ref='container'>
+          <div style={wrapperStyle} ref='wrapper'>
             {(containerWidth || containerHeight) &&
               <ComposedComponent
                 {...this.state}
