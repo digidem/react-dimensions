@@ -126,8 +126,8 @@ module.exports = function Dimensions ({
         if (!this.refs.wrapper) {
           throw new Error('Cannot find wrapper div')
         }
-        this.updateDimensions()
         this._parent = this.refs.wrapper.parentNode
+        this.updateDimensionsImmediate()
         if (elementResize) {
           // Experimental: `element-resize-event` fires when an element resizes.
           // It attaches its own window resize listener and also uses
