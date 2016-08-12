@@ -9,7 +9,6 @@
   "scripts": {
     "start": "./node_modules/.bin/budo example.jsx --live --open -- -t babelify",
     "build": "npm test && babel index.jsx -o index.js",
-    "doc": "documentation readme index.jsx --section 'API'",
     "prepublish": "npm run build",
     "test": "standard"
   },
@@ -40,7 +39,6 @@
     "babel-preset-react": "^6.5.0",
     "babelify": "^7.2.0",
     "budo": "^8.2.1",
-    "documentation": "^4.0.0-beta2",
     "eslint-config-standard": "^5.2.0",
     "eslint-config-standard-react": "^2.3.0",
     "eslint-plugin-react": "^5.0.1",
