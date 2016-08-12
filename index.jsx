@@ -8,12 +8,8 @@ const defaultContainerStyle = {
   margin: 0
 }
 
-function defaultGetWidth (element) {
-  return element.clientWidth
-}
-
-function defaultGetHeight (element) {
-  return element.clientHeight
+function defaultGetDimensions (element) {
+  return [element.clientWidth, element.clientHeight]
 }
 
 /**
@@ -84,8 +80,7 @@ function defaultGetHeight (element) {
  *
  */
 module.exports = function Dimensions ({
-    getHeight = defaultGetHeight,
-    getWidth = defaultGetWidth,
+    getDimensions = defaultGetDimensions,
     debounce = 0,
     debounceOpts = {},
     containerStyle = defaultContainerStyle,
@@ -103,13 +98,14 @@ module.exports = function Dimensions ({
 
       // Immediate updateDimensions callback with no debounce
       updateDimensionsImmediate = () => {
-        const container = this._parent
-        const containerWidth = getWidth(container)
-        const containerHeight = getHeight(container)
+        const dimensions = getDimensions(this._parent)
 
-        if (containerWidth !== this.state.containerWidth ||
-            containerHeight !== this.state.containerHeight) {
-          this.setState({containerWidth, containerHeight})
+        if (dimensions[0] !== this.state.containerWidth ||
+            dimensions[1] !== this.state.containerHeight) {
+          this.setState({
+            containerWidth: dimensions[0],
+            containerHeight: dimensions[1]
+          })
         }
       }
 
