@@ -123,11 +123,11 @@ module.exports = function Dimensions ({
       }
 
       componentDidMount () {
-        if (!this.refs.container) {
-          throw new Error('Cannot find container div')
+        if (!this.refs.wrapper) {
+          throw new Error('Cannot find wrapper div')
         }
-        this._parent = this.refs.container.parentNode
         this.updateDimensions()
+        this._parent = this.refs.wrapper.parentNode
         if (elementResize) {
           // Experimental: `element-resize-event` fires when an element resizes.
           // It attaches its own window resize listener and also uses
@@ -140,6 +140,8 @@ module.exports = function Dimensions ({
 
       componentWillUnmount () {
         this.getWindow().removeEventListener('resize', this.onResize)
+        // TODO: remote element-resize-event listener.
+        // pending https://github.com/KyleAMathews/element-resize-event/issues/2
       }
 
       /**
