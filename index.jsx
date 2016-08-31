@@ -73,7 +73,7 @@ function defaultGetDimensions (element) {
  * module.exports = Dimensions()(MyComponent) // Enhanced component
  *
  */
-module.exports = function Dimensions ({
+export default function ({
     getDimensions = defaultGetDimensions,
     debounce = 0,
     debounceOpts = {},
