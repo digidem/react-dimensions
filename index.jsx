@@ -77,6 +77,8 @@ module.exports = function Dimensions ({
     getDimensions = defaultGetDimensions,
     debounce = 0,
     debounceOpts = {},
+    containerStyle,
+    className,
     elementResize = false
   } = {}) {
   return (ComposedComponent) => {
@@ -167,7 +169,7 @@ module.exports = function Dimensions ({
           width: 0
         }
         return (
-          <div style={wrapperStyle} ref='wrapper'>
+          <div className={className} style={containerStyle || wrapperStyle} ref='wrapper'>
             {(containerWidth || containerHeight) &&
               <ComposedComponent
                 {...this.state}
