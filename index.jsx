@@ -92,7 +92,7 @@ module.exports = function Dimensions ({
 
       // Immediate updateDimensions callback with no debounce
       updateDimensionsImmediate = () => {
-        const dimensions = getDimensions(this._parent)
+        const dimensions = getDimensions(this.refs.wrapper)
 
         if (dimensions[0] !== this.state.containerWidth ||
             dimensions[1] !== this.state.containerHeight) {
