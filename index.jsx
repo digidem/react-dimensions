@@ -77,7 +77,8 @@ module.exports = function Dimensions ({
     getDimensions = defaultGetDimensions,
     debounce = 0,
     debounceOpts = {},
-    elementResize = false
+    elementResize = false,
+    withRef = true
   } = {}) {
   return (ComposedComponent) => {
     return class DimensionsHOC extends React.Component {
@@ -152,6 +153,9 @@ module.exports = function Dimensions ({
        * @return {object} The rendered React component
        **/
       getWrappedInstance () {
+        if (!withRef) {
+          console.warn('You need to enable the `withRef` option to access the wrapped instance')
+        }
         return this.refs.wrappedInstance
       }
 
@@ -173,7 +177,7 @@ module.exports = function Dimensions ({
                 {...this.state}
                 {...this.props}
                 updateDimensions={this.updateDimensions}
-                ref='wrappedInstance'
+                ref={withRef && 'wrappedInstance'}
               />
             }
           </div>
