@@ -168,13 +168,14 @@ module.exports = function Dimensions ({
         }
         return (
           <div style={wrapperStyle} ref='wrapper'>
-            {(containerWidth || containerHeight) &&
-              <ComposedComponent
+            {(containerWidth || containerHeight)
+              ? <ComposedComponent
                 {...this.state}
                 {...this.props}
                 updateDimensions={this.updateDimensions}
                 ref='wrappedInstance'
-              />
+               />
+              : null
             }
           </div>
         )
