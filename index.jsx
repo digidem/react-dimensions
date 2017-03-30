@@ -77,6 +77,8 @@ module.exports = function Dimensions ({
     getDimensions = defaultGetDimensions,
     debounce = 0,
     debounceOpts = {},
+    containerStyle,
+    className,
     elementResize = false
   } = {}) {
   return (ComposedComponent) => {
@@ -90,7 +92,7 @@ module.exports = function Dimensions ({
 
       // Immediate updateDimensions callback with no debounce
       updateDimensionsImmediate = () => {
-        const dimensions = getDimensions(this._parent)
+        const dimensions = getDimensions(this.refs.wrapper)
 
         if (dimensions[0] !== this.state.containerWidth ||
             dimensions[1] !== this.state.containerHeight) {
@@ -167,7 +169,7 @@ module.exports = function Dimensions ({
           width: 0
         }
         return (
-          <div style={wrapperStyle} ref='wrapper'>
+          <div className={className} style={containerStyle || wrapperStyle} ref='wrapper'>
             {(containerWidth || containerHeight) &&
               <ComposedComponent
                 {...this.state}
