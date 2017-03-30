@@ -2,6 +2,8 @@
 
 React [higher-order component](https://gist.github.com/sebmarkbage/ef0bf1f338a7182b6775) to get the dimensions of a wrapper element and pass them as properties to the child element.
 
+**DEVELOPMENT STATUS:** I'm not really using this any more since for grids/tables in React I've switched from [fixed-data-table](https://github.com/facebook/fixed-data-table) (which I was using this for) to [react-virtualized](https://github.com/bvaughn/react-virtualized) which includes similar functionality to this with the [Autosizer](https://bvaughn.github.io/react-virtualized/#/components/AutoSizer). I'm happy for someone else to take this module on.
+
 **v2.0.0-alpha1:** Includes several breaking changes, most importantly changing the way dimensions are calculated. The parent container is now used for width calculations, and the wrapper div inside this component is ignored. Hopefully this will solve the multiple styling issues users have had, but it will break layout in apps using v1.2.0
 
 ## Why? How?
