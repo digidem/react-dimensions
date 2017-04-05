@@ -1,6 +1,7 @@
 const _debounce = require('lodash.debounce')
 const React = require('react')
 const onElementResize = require('element-resize-event')
+const invariant = require('invariant')
 
 function defaultGetDimensions (element) {
   return [element.clientWidth, element.clientHeight]
@@ -77,7 +78,8 @@ module.exports = function Dimensions ({
     getDimensions = defaultGetDimensions,
     debounce = 0,
     debounceOpts = {},
-    elementResize = false
+    elementResize = false,
+    withRef = true
   } = {}) {
   return (ComposedComponent) => {
     return class DimensionsHOC extends React.Component {
@@ -152,6 +154,10 @@ module.exports = function Dimensions ({
        * @return {object} The rendered React component
        **/
       getWrappedInstance () {
+        invariant(withRef,
+          'To access the wrapped instance, you need to specify { withRef: true } as the fourth argument of the connect() call.'
+        )
+
         return this.refs.wrappedInstance
       }
 
@@ -166,6 +172,7 @@ module.exports = function Dimensions ({
           height: 0,
           width: 0
         }
+        const ref = withRef ? 'wrappedInstance' : null
         return (
           <div style={wrapperStyle} ref='wrapper'>
             {(containerWidth || containerHeight) &&
@@ -173,7 +180,7 @@ module.exports = function Dimensions ({
                 {...this.state}
                 {...this.props}
                 updateDimensions={this.updateDimensions}
-                ref='wrappedInstance'
+                ref={ref}
               />
             }
           </div>
