@@ -56,6 +56,8 @@ or as an [ES7 class decorator](https://github.com/wycats/javascript-decorators)
     -   `options.className` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)=** Control the class name set on the wrapper `<div>`
     -   `options.elementResize` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)=** Set true to watch the wrapper `div` for changes in
         size which are not a result of window resizing - e.g. changes to the flexbox and other layout. (optional, default `false`)
+    -   `options.withRef` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)=** Set true to enable accessing the wrapped instance with
+        [getWrappedInstance()](https://github.com/digidem/react-dimensions#getwrappedinstance). Disable this when wrapping stateless components, as they cannot use `refs`. (optional, default `true`)
 
 **Examples**
 
