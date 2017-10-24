@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.0.0-alpha2] - 2016-10-24
+### Added
+- Added peer dependency for React 16
+
 ## [2.0.0-alpha1] - 2016-08-12
 ### Added
 - Added a CHANGELOG.md
@@ -32,6 +36,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Now works in popup windows and iframes with a different `window` context (#22)
 
 
+[2.0.0-alpha2]: https://github.com/digidem/react-dimensions/compare/v2.0.0-alpha1...v2.0.0-alpha2
 [2.0.0-alpha1]: https://github.com/digidem/react-dimensions/compare/v1.2.0...v2.0.0-alpha1
 [1.2.0]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.1.0...v1.1.1
