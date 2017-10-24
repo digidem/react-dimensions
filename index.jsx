@@ -1,6 +1,7 @@
 const _debounce = require('lodash.debounce')
 const React = require('react')
 const onElementResize = require('element-resize-event')
+const unbind = require('element-resize-event').unbind
 
 function defaultGetDimensions (element) {
   return [element.clientWidth, element.clientHeight]
@@ -139,9 +140,12 @@ module.exports = function Dimensions ({
       }
 
       componentWillUnmount () {
-        this.getWindow().removeEventListener('resize', this.onResize)
-        // TODO: remote element-resize-event listener.
-        // pending https://github.com/KyleAMathews/element-resize-event/issues/2
+        this._parent = this.refs.wrapper.parentNode
+        if (elementResize) {
+          unbind(this._parent)
+        } else {
+          this.getWindow().removeEventListener('resize', this.onResize)
+        }
       }
 
       /**
