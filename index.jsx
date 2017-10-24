@@ -157,7 +157,7 @@ module.exports = function Dimensions ({
         }
         return (
           <div className={className} style={containerStyle} ref='container'>
-            {(containerWidth || containerHeight) &&
+            {!(containerWidth || containerHeight) : null ?
               <ComposedComponent
                 {...this.state}
                 {...this.props}
