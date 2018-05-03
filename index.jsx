@@ -2,6 +2,7 @@ const _debounce = require('lodash.debounce')
 const React = require('react')
 const onElementResize = require('element-resize-event')
 const unbind = require('element-resize-event').unbind
+const hoistNonReactStatics = require('hoist-non-react-statics')
 
 const defaultContainerStyle = {
   width: '100%',
@@ -89,7 +90,7 @@ export default function Dimensions ({
     containerStyle = defaultContainerStyle
   } = {}) {
   return (ComposedComponent) => {
-    return class DimensionsHOC extends React.Component {
+    class DimensionsHOC extends React.Component {
       // ES7 Class properties
       // http://babeljs.io/blog/2015/06/07/react-on-es6-plus/#property-initializers
       state = {}
@@ -189,5 +190,9 @@ export default function Dimensions ({
         )
       }
     }
+
+    hoistNonReactStatics(DimensionsHOC, ComposedComponent)
+
+    return DimensionsHOC
   }
 }
