@@ -1,6 +1,15 @@
 const _debounce = require('lodash.debounce')
 const React = require('react')
 const onElementResize = require('element-resize-event')
+const unbind = require('element-resize-event').unbind
+const hoistNonReactStatics = require('hoist-non-react-statics')
+
+const defaultContainerStyle = {
+  width: '100%',
+  height: '100%',
+  padding: 0,
+  border: 0
+}
 
 function defaultGetDimensions (element) {
   return [element.clientWidth, element.clientHeight]
@@ -73,14 +82,15 @@ function defaultGetDimensions (element) {
  * module.exports = Dimensions()(MyComponent) // Enhanced component
  *
  */
-module.exports = function Dimensions ({
+export default function Dimensions ({
     getDimensions = defaultGetDimensions,
     debounce = 0,
     debounceOpts = {},
-    elementResize = false
+    elementResize = false,
+    containerStyle = defaultContainerStyle
   } = {}) {
   return (ComposedComponent) => {
-    return class DimensionsHOC extends React.Component {
+    class DimensionsHOC extends React.Component {
       // ES7 Class properties
       // http://babeljs.io/blog/2015/06/07/react-on-es6-plus/#property-initializers
       state = {}
@@ -139,9 +149,12 @@ module.exports = function Dimensions ({
       }
 
       componentWillUnmount () {
-        this.getWindow().removeEventListener('resize', this.onResize)
-        // TODO: remote element-resize-event listener.
-        // pending https://github.com/KyleAMathews/element-resize-event/issues/2
+        this._parent = this.refs.wrapper.parentNode
+        if (elementResize) {
+          unbind(this._parent)
+        } else {
+          this.getWindow().removeEventListener('resize', this.onResize)
+        }
       }
 
       /**
@@ -161,24 +174,25 @@ module.exports = function Dimensions ({
           // only trigger a warning about the wrapper div if we already have a reference to it
           console.warn('Wrapper div has no height or width, try overriding style with `containerStyle` option')
         }
-        const wrapperStyle = {
-          overflow: 'visible',
-          height: 0,
-          width: 0
-        }
+
         return (
-          <div style={wrapperStyle} ref='wrapper'>
-            {(containerWidth || containerHeight) &&
-              <ComposedComponent
+          <div style={containerStyle} ref='wrapper'>
+            {(containerWidth || containerHeight)
+              ? <ComposedComponent
                 {...this.state}
                 {...this.props}
                 updateDimensions={this.updateDimensions}
                 ref='wrappedInstance'
-              />
+               />
+              : null
             }
           </div>
         )
       }
     }
+
+    hoistNonReactStatics(DimensionsHOC, ComposedComponent)
+
+    return DimensionsHOC
   }
 }
